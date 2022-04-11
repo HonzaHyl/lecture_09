@@ -46,6 +46,25 @@ def pattern_search(dna_sequence, pattern):
     return positions
 
 
+def binary_search(ordered_list, number):
+
+    left = 0
+    right = len(ordered_list) - 1
+
+    while left <= right:
+        middle = (left+right) // 2
+
+        if number == ordered_list[middle]:
+            return middle
+        elif number > ordered_list[middle]:
+            left = middle + 1
+        elif number < ordered_list[middle]:
+            right = middle - 1
+
+    return None
+
+
+
 def main():
     sequential_data = read_data("sequential.json", field="unordered_numbers")
 
@@ -56,6 +75,10 @@ def main():
     output = pattern_search(dna_sequence, "ATA")
 
     print(output)
+
+    ordered_list = read_data("sequential.json", field="ordered_numbers")
+
+    print(binary_search(ordered_list, number=14))
 
 
 
